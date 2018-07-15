@@ -3,7 +3,7 @@ package com.esgi.virtualclassroom.data.api;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
-import com.esgi.virtualclassroom.data.models.Attachment;
+
 import com.esgi.virtualclassroom.data.models.Classroom;
 import com.esgi.virtualclassroom.data.models.Message;
 import com.esgi.virtualclassroom.data.models.User;
@@ -19,6 +19,7 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.konradkevin.virtualclassroomlibrary.models.Attachment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
