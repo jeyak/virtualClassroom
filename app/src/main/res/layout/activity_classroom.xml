@@ -107,29 +107,56 @@
         </FrameLayout>
     </LinearLayout>
 
+
     <Button
-        android:id="@+id/send_drawing_button"
-        android:visibility="gone"
+        android:id="@+id/undo_drawing_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/classroom_undo_drawing_button_text"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/send_drawing_button"
+        app:layout_constraintLeft_toRightOf="@+id/redo_drawing_button" />
+
+    <Button
+        android:id="@+id/redo_drawing_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/classroom_redo_drawing_button_text"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/clear_drawing_button"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/send_drawing_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
         android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/white"
         android:text="@string/classroom_send_drawing_button_text"
+        android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <Button
         android:id="@+id/clear_drawing_button"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="@string/classroom_clear_drawing_button_text"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/send_drawing_button" />
+        app:layout_constraintLeft_toRightOf="@+id/send_drawing_button" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -71,6 +71,14 @@ public class ClassroomPresenter {
         this.view.clearDrawing();
     }
 
+    public void onRedoDrawingClick() {
+        this.view.redoDrawing();
+    }
+
+    public void onUndoDrawingClick() {
+        this.view.undoDrawing();
+    }
+
     public void onSpeechButtonClick() {
         if (!isSpeaking) {
             this.view.startSpeech();

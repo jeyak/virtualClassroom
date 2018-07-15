@@ -6,11 +6,12 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.esgi.virtualclassroom.data.api.FirebaseProvider;
-import com.esgi.virtualclassroom.data.models.Attachment;
+//import com.esgi.virtualclassroom.data.models.Attachment;
 import com.esgi.virtualclassroom.data.models.Classroom;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.konradkevin.virtualclassroomlibrary.models.Attachment;
 
 import java.io.File;
 import java.util.ArrayList;

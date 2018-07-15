@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.esgi.virtualclassroom.R;
-import com.esgi.virtualclassroom.data.models.Attachment;
+import com.konradkevin.virtualclassroomlibrary.models.Attachment;
 
 import java.util.List;
 

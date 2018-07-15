@@ -49,6 +49,8 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomVie
     @BindView(R.id.speech_button) FloatingActionButton speechButton;
     @BindView(R.id.send_drawing_button) Button sendDrawingButton;
     @BindView(R.id.clear_drawing_button) Button clearDrawingButton;
+    @BindView(R.id.undo_drawing_button) Button undoDrawingButton;
+    @BindView(R.id.redo_drawing_button) Button redoDrawingButton;
 
     @OnClick(R.id.speech_button)
     public void onSpeechButtonClick() {
@@ -64,6 +66,17 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomVie
     public void onClearDrawingClick() {
         this.presenter.onClearDrawingClick();
     }
+
+    @OnClick(R.id.redo_drawing_button)
+    public void onRedoDrawingClick() {
+        this.presenter.onRedoDrawingClick();
+    }
+
+    @OnClick(R.id.undo_drawing_button)
+    public void onUndoDrawingClick() {
+        this.presenter.onUndoDrawingClick();
+    }
+
 
     @OnClick(R.id.fabChat)
     public void onChatItemClick() {
@@ -108,6 +121,8 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomVie
             speechButton.setVisibility(View.VISIBLE);
             sendDrawingButton.setVisibility(View.VISIBLE);
             clearDrawingButton.setVisibility(View.VISIBLE);
+            undoDrawingButton.setVisibility(View.VISIBLE);
+            redoDrawingButton.setVisibility(View.VISIBLE);
         }
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -164,6 +179,16 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomVie
     @Override
     public void clearDrawing() {
         drawingView.clear();
+    }
+
+    @Override
+    public void redoDrawing() {
+        drawingView.redo();
+    }
+
+    @Override
+    public void undoDrawing() {
+        drawingView.undo();
     }
 
     @Override

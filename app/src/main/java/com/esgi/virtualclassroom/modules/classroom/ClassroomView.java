@@ -9,6 +9,8 @@ interface ClassroomView {
     void showAttachmentFragment(AttachmentsFragment fragment);
     void updateView(Classroom classroom);
     void clearDrawing();
+    void redoDrawing();
+    void undoDrawing();
     void startSpeech();
     void stopSpeech();
     void exit();

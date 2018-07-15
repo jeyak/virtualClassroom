@@ -6,8 +6,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.esgi.virtualclassroom.drawUtils.Memento;
+import com.esgi.virtualclassroom.drawUtils.PathCommandManager;
+import com.esgi.virtualclassroom.drawUtils.MementoContainer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DrawingView extends View {
     private Paint paint;
@@ -21,11 +29,15 @@ public class DrawingView extends View {
     private float mY;
     private static final float TOUCH_TOLERANCE = 4;
 
+    private MementoContainer mementoContainer = new MementoContainer();
+    private PathCommandManager pathCommandManager = new PathCommandManager();
+    private ArrayList<Path> paths;
+
     public DrawingView(Context context) {
         super(context);
         path = new Path();
         bitmapPaint = new Paint(Paint.DITHER_FLAG);
-
+        paths = new ArrayList<>();
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setDither(true);
@@ -55,6 +67,33 @@ public class DrawingView extends View {
         bitmap.eraseColor(Color.TRANSPARENT);
     }
 
+    public void undo() {
+        List<Memento> mementos;
+        mementoContainer.restore(pathCommandManager.getLastDrawMemento());
+        mementos = pathCommandManager.getDrawMementos();
+        bitmap.eraseColor(Color.TRANSPARENT);
+        if(mementos.size() > 0) {
+            for (Memento memento : mementos) {
+                Path tmp = memento.getPath();
+                canvas.drawPath(tmp, paint);
+            }
+        }
+    }
+
+    public void redo() {
+        List<Memento> mementos;
+        mementoContainer.cancelRestore(pathCommandManager.getLastUnDrawMemento());
+        mementos = pathCommandManager.getDrawMementos();
+        bitmap.eraseColor(Color.TRANSPARENT);
+        if(mementos.size() > 0) {
+            for (Memento memento : mementos) {
+                Path tmp = memento.getPath();
+                canvas.drawPath(tmp, paint);
+            }
+        }
+    }
+
+
     public Bitmap getBitmap() {
         return bitmap;
     }
@@ -68,6 +107,7 @@ public class DrawingView extends View {
     }
 
     private void touchStart(float x, float y) {
+        Log.e("icii","touchStart");
         path.reset();
         path.moveTo(x, y);
         mX = x;
@@ -75,6 +115,7 @@ public class DrawingView extends View {
     }
 
     private void touchMove(float x, float y) {
+        Log.e("icii","touchMove");
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
 
@@ -89,10 +130,14 @@ public class DrawingView extends View {
     }
 
     private void touchUp(Paint mPaint) {
+        Log.e("icii","Touchup");
         path.lineTo(mX, mY);
         circlePath.reset();
         canvas.drawPath(path,  mPaint);
-        path.reset();
+        mementoContainer.setState("draw",path);
+        pathCommandManager.removeAllUndrawMemento();
+        pathCommandManager.addMemento(mementoContainer.save());
+        path = new Path();
     }
 
     @Override
