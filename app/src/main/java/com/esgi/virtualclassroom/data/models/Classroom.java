@@ -163,4 +163,58 @@ public class Classroom implements Parcelable {
     public void setSubscriptions(ArrayList<String> subscriptions) {
         this.subscriptions = subscriptions;
     }
+
+    public static class Builder {
+
+        private Classroom instance;
+
+        public Builder() {
+            this.instance = new Classroom();
+        }
+
+        public Classroom.Builder id(String value) {
+            this.instance.id = value;
+            return this;
+        }
+
+        public Classroom.Builder title(String value) {
+            this.instance.title = value;
+            return this;
+        }
+
+        public Classroom.Builder description(String value) {
+            this.instance.description = value;
+            return this;
+        }
+
+        public Classroom.Builder start(long value) {
+            this.instance.start = value;
+            return this;
+        }
+
+        public Classroom.Builder end(long value) {
+            this.instance.start = value;
+            return this;
+        }
+
+        public Classroom.Builder attachmentsCount(int value) {
+            this.instance.attachmentsCount = value;
+            return this;
+        }
+
+        public Classroom.Builder viewerCount(int value) {
+            this.instance.viewersCount = value;
+            return this;
+        }
+
+        public Classroom.Builder subscriptionsCount(int value) {
+            this.instance.subscriptionsCount = value;
+            return this;
+        }
+
+        public Classroom.Builder speechText(String value) {
+            this.instance.speechText = value;
+            return this;
+        }
+    }
 }
